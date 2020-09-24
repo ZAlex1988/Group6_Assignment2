@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Group6_Assignment2/1.0.0": {
+        "runtime": {
+          "Group6_Assignment2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Group6_Assignment2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
