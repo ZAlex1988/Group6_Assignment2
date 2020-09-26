@@ -144,10 +144,9 @@ namespace Assignment2_Fall2020
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                throw;
+                Console.WriteLine("An exception occurred inside SortedSquares() method: " + e.Message + " " + e.StackTrace);
             }
             return squaredArray;
         }
@@ -195,9 +194,9 @@ namespace Assignment2_Fall2020
                 }
 
             }
-            catch
+            catch(Exception e)
             {
-                throw;
+                Console.WriteLine("An exception occurred inside Intersect() method: " + e.Message + " " + e.StackTrace);
             }
 
             return output;
@@ -257,10 +256,10 @@ namespace Assignment2_Fall2020
                     output = false;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                Console.WriteLine("An exception occurred inside UniqueOccurrences() method: " + e.Message + " " + e.StackTrace);
             }
             return output;
         }
