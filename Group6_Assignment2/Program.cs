@@ -133,9 +133,9 @@ namespace Assignment2_Fall2020
 
                 string[] layers = new string[75];
 
-                for (int i = 0; i < value_of_input; i++)
+                for (int i = 1; i <= value_of_input; i++)
                 {
-                    layers[i] = string.Concat(Enumerable.Repeat("*", i));
+                    layers[i-1] = string.Concat(Enumerable.Repeat("*", i));
                 }
 
                 for (int i = 0; i < value_of_input; i++)
