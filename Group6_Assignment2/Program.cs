@@ -504,15 +504,41 @@ namespace Assignment2_Fall2020
             {
                 for (int i = 0; i < names.Length; i++)
                 {
-                    string key = names[i];
-                    if (key.EndsWith(")"))
+                    string key = "";
+                    int num = 0;
+                    string wholekey = names[i];
+                    // check if bracket already present in file name
+                    if (wholekey.EndsWith(")"))
                     {
-                        key = key.Substring(0, key.Length - 3);
+                        int startBracket = wholekey.IndexOf("(");
+                        int endBracket = wholekey.IndexOf(")");                        
+                        key = wholekey.Substring(0, startBracket);                        
+                        num = Convert.ToInt32(wholekey.Substring(startBracket + 1, endBracket - startBracket - 1));
+                        
+                    }
+                    else
+                    {
+                        key = names[i];
                     }
                     if (dict.ContainsKey(key))
                     {
                         int count = dict[key];
-                        res[i] = key + "(" + Convert.ToString(count + 1) + ")";
+
+                        if (wholekey.EndsWith(")"))
+                        {
+                            // if bigger number within bracket
+                            if (count < num)
+                            {
+                                res[i] = names[i];
+                            }
+                            else
+                            {
+                                res[i] = key + "(" + Convert.ToString(count + 1) + ")";
+                            }
+                        }
+                        else {
+                            res[i] = key + "(" + Convert.ToString(count + 1) + ")";
+                        }
                         dict[key] = count + 1;
                     }
                     else
