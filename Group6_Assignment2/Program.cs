@@ -10,20 +10,25 @@ namespace Assignment2_Fall2020
         {
             Console.WriteLine("Question 1");
             int n = 7;
+            Console.WriteLine("PrintPatternAnyComplexity:");
             PrintPatternAnyComplexity(n);
+            Console.WriteLine("PrintPatternLinearComplexity:");
             PrintPatternLinearComplexity(n);
-
+            
+            Console.WriteLine();
             Console.WriteLine("Question 2");
             int[] arr = { 1, 3, 5, 4, 7 };
-            int p = arr.Length;
-            Console.WriteLine("Length = " +
-                               lenOfLongIncSubArr(arr, p));
-
+            
+            int result = LongestSubSeq(arr);
+            Console.WriteLine("Length = " + result);
+            Console.WriteLine();
+            
             Console.WriteLine("Question 3");
             int[] array2 = new int[] { 1, 2, 3, 4, 5, 5 };
-            int q = 6;
-            PrintTwoParts(array2, q);
+            
+            PrintTwoParts(array2);
 
+            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Question 4");
             int[] array3 = new int[] { -4, -1, 0, 3, 10 };
@@ -32,6 +37,7 @@ namespace Assignment2_Fall2020
             Console.WriteLine("Sorted Squared Array elements are: [" + string.Join(',', result2.ToList()) + "]");
             //Write code to print the result array here
 
+            Console.WriteLine();
             Console.WriteLine("Question 5");
             int[] nums1 = { 4, 2, 2, 4 };
             int[] nums2 = { 2, 2 };
@@ -41,12 +47,13 @@ namespace Assignment2_Fall2020
             Console.WriteLine("Intersection Array elements are: [" + string.Join(',', intersect1.ToList()) + "]");
             //Write code to print the result array here
 
-
+            Console.WriteLine();
             Console.WriteLine("Question 6");
             int[] array = new int[] { 1, 2, 2, 1, 1, 3 };
             Console.WriteLine("Input Array elements are: [" + string.Join(',', array.ToList()) + "]");
             Console.WriteLine(UniqueOccurrences(array));
 
+            Console.WriteLine();
             Console.WriteLine("Question 7");
             int[] numbers = { 0, 1, 3, 50, 75 };
             //int[] numbers = { };
@@ -125,55 +132,42 @@ namespace Assignment2_Fall2020
 
         public static void PrintPatternAnyComplexity(int n)
         {
-            Console.Write("Please enter a number less than 76:");
             try
             {
-                string input = Console.ReadLine();
-                int value_of_input = int.Parse(input);
+                
+                string[] layers = new string[n];
 
-                string[] layers = new string[75];
-
-                for (int i = 1; i <= value_of_input; i++)
+                for (int i = 1; i <= n; i++)
                 {
                     layers[i-1] = string.Concat(Enumerable.Repeat("*", i));
                 }
 
-                for (int i = 0; i < value_of_input; i++)
+                for (int i = 0; i < n; i++)
                 {
                     Console.WriteLine(layers[i]);
                 }
             }
-            catch
+            catch(Exception e)
             {
-                Console.WriteLine("Exception occured while computing PrintTriangle()");
-                throw;
+                Console.WriteLine("An exception occurred inside PrintPatternAnyComplexity() method: " + e.Message + " " + e.StackTrace);
             }
         }
 
-        // ***** The second triangle is less complex and of linear complexity. It is an equilateral triangle. *****
-        // ***** This is similar to the triangle from assignment 1, but with slightly more layers.            *****
         // ***** A very simple O(n) triangle.                                                                 *****
         public static void PrintPatternLinearComplexity(int n)
         {
-            Console.Write("Please enter a number between 1 and 7: ");
             try
             {
-                string input = Console.ReadLine();
-
-                int value_of_input = int.Parse(input);
-
-                string[] layers = { "      *", "     ***", "    *****", "   *******", "  *********", " ***********", "*************" };
-
-                // Iterate through the array using a For Loop
-                for (int i = 0; i < value_of_input; i++)
+                String s = "";
+                for (int i = 1; i <= n; ++i)
                 {
-                    // layers[i] = layers;
-                    Console.WriteLine(layers[i]);
+                    s += "*";
+                    Console.WriteLine(s);
                 }
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("Exception occured while computing PrintTriangle()");
+                Console.WriteLine("An exception occurred inside PrintPatternLinearComplexity() method: " + e.Message + " " + e.StackTrace);
             }
         }
 
@@ -183,13 +177,12 @@ namespace Assignment2_Fall2020
         // *** Max is then printed as the largest subarray or 1.                          ***;
         // *** This method confines itself within o(n) with help from 'Geeksforgeeks.org' ***;
 
-        public static int lenOfLongIncSubArr(int[] arr,
-                                                 int p)
+        public static int LongestSubSeq(int[] arr)
         {
 
             int max = 1, len = 1;
             // traverse the array from the 2nd element
-            for (int i = 1; i < p; i++)
+            for (int i = 1; i < arr.Length; i++)
             {
                 // if current element if greater than
                 // previous element, then this element
@@ -232,13 +225,13 @@ namespace Assignment2_Fall2020
         // *** Therefore I believe this example to be o(n) or o2(n).                                                                                                                          ***  
         // *** With only a few possible outcomes, corner cases should be minimal.                                                                                                             ***          
 
-        static int findSplitPoint(int[] array2, int q)
+        private static int findSplitPoint(int[] array2)
         {
 
             int leftSum = 0;
 
             // traverse array element
-            for (int i = 0; i < q; i++)
+            for (int i = 0; i < array2.Length; i++)
             {
 
                 // add current element to left Sum
@@ -248,7 +241,7 @@ namespace Assignment2_Fall2020
                 // elements (rightSum)
                 int rightSum = 0;
 
-                for (int j = i + 1; j < q; j++)
+                for (int j = i + 1; j < array2.Length; j++)
                     rightSum += array2[j];
 
                 // split point index
@@ -263,18 +256,18 @@ namespace Assignment2_Fall2020
 
         // Prints two parts after finding  
         // split point using findSplitPoint()
-        static void PrintTwoParts(int[] array2, int q)
+        public static void PrintTwoParts(int[] array2)
         {
 
-            int splitPoint = findSplitPoint(array2, q);
+            int splitPoint = findSplitPoint(array2);
 
-            if (splitPoint == -1 || splitPoint == q)
+            if (splitPoint == -1 || splitPoint == array2.Length)
             {
                 Console.Write("Not Possible");
                 return;
             }
 
-            for (int i = 0; i < q; i++)
+            for (int i = 0; i < array2.Length; i++)
             {
                 if (splitPoint == i)
                     Console.WriteLine();
@@ -317,6 +310,7 @@ namespace Assignment2_Fall2020
             {
                 Console.WriteLine("An exception occurred inside SortedSquares() method: " + e.Message + " " + e.StackTrace);
             }
+            Array.Sort(squaredArray);
             return squaredArray;
         }
 
